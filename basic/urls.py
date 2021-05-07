@@ -19,5 +19,12 @@ from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.showmain),
+    path('', views.showmain, name="showmain"),
+    path('fist/', views.first, name="first"),
+    path('second/', views.second, name="second"),
+    path('photo1/', views.photo1, name="photo1"),
+    path('photo2/', views.photo2, name="photo2"),
+    path('photo3/', views.photo3, name="photo3"),
+    path('photo4/', views.photo4, name="photo4"),
+    path('photo5/', views.photo5, name="photo5"),
 ]

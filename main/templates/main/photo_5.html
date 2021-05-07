@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            body{
+                background-color: #FFC8CD;
+            }
+            pre{
+                font-size: 40px;
+                color: white;
+                font-family:Times;
+
+            }
+            .photo1{
+                font-size: 50px;
+            }
+            .photo2{
+                font-size: 50px;
+            }
+            .photo3{
+                font-size: 50px;
+            }
+            .photo4{
+                font-size: 50px;
+            }
+            .photo5{
+                font-size: 50px;
+            }
+            .school{
+                text-align: center;
+            }
+            .school1{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .school2{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .school3{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom:10px;
+                width:40%;
+                display: inline-block;
+            }
+            .school4{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .school5{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .school6{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+        </style>
+    </head>
+
+
+<body >
+    
+
+    <center>
+        <pre>
+
+click the memory
+
+        </pre>
+        <a class="photo1" href="{% url 'photo1' %}" style="text-decoration:none">🐱&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo2" href="{% url 'photo2' %}" style="text-decoration:none">🌿&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo3" href="{% url 'photo3' %}" style="text-decoration:none">🏖&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo4" href="{% url 'photo4' %}" style="text-decoration:none">✈&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo5" href="{% url 'photo5' %}" style="text-decoration:none">🏫</a>
+        <p> </p>
+    </center>
+    <pre>
+
+    </pre>
+    <div class="school">
+        <img class="school1" src="{%static 'images/school1.jpg' %}">
+        <img class="school2" src="{%static 'images/school2.jpg' %}">
+        <img class="school3" src="{%static 'images/school3.jpg' %}">
+        <img class="school4" src="{%static 'images/school4.jpg' %}">
+        <img class="school5" src="{%static 'images/school5.jpg' %}">
+        <img class="school6" src="{%static 'images/school6.jpg' %}">
+    </div>
+  
+
+</body>
+
+</html>
+
+
+
+{% endblock %}

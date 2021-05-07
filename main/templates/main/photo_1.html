@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<html>
+    <head>
+        <style>
+            body{
+                background-color: #FFC8CD;
+            }
+            pre{
+                font-size: 40px;
+                color: white;
+                font-family:Times;
+
+            }
+            .photo1{
+                font-size: 50px;
+            }
+            .photo2{
+                font-size: 50px;
+            }
+            .photo3{
+                font-size: 50px;
+            }
+            .photo4{
+                font-size: 50px;
+            }
+            .photo5{
+                font-size: 50px;
+            }
+            .cat{
+                text-align: center;
+            }
+            .cat1{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .cat2{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .cat3{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom:10px;
+                width:40%;
+                display: inline-block;
+            }
+            .cat4{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .cat5{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+            .cat6{
+                border-radius: 2%;
+                margin-right:7px;
+                margin-bottom: 10px;
+                width:40%;
+                display: inline-block;
+            }
+        </style>
+    </head>
+
+
+<body >
+    
+
+    <center>
+        <pre>
+
+click the memory
+
+        </pre>
+        <a class="photo1" href="{% url 'photo1' %}" style="text-decoration:none">🐱&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo2" href="{% url 'photo2' %}" style="text-decoration:none">🌿&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo3" href="{% url 'photo3' %}" style="text-decoration:none">🏖&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo4" href="{% url 'photo4' %}" style="text-decoration:none">✈&nbsp;&nbsp;&nbsp;</a>
+        <a class="photo5" href="{% url 'photo5' %}" style="text-decoration:none">🏫</a>
+        <p> </p>
+    </center>
+    <pre>
+
+    </pre>
+    <div class="cat">
+        
+        <img class="cat3" src="{%static 'images/cat3.jpg' %}">
+        <img class="cat4" src="{%static 'images/cat4.jpg' %}">
+        <img class="cat5" src="{%static 'images/cat5.jpg' %}">
+        <img class="cat6" src="{%static 'images/cat6.jpg' %}">
+        <img class="cat1" src="{%static 'images/cat1.jpg' %}">
+        <img class="cat2" src="{%static 'images/cat2.jpg' %}">
+
+    </div>
+  
+
+</body>
+
+</html>
+
+
+
+{% endblock %}
+

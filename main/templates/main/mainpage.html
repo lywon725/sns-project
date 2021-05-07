@@ -1,12 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>2021 Dongguk Likelion 3rd session</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .background{
+        width:100%;
+        /*background-image: url(./images/photo1.jpg);*/
+        position:absolute; 
+        z-index: 1;
+    }
+    .text{
+        position:absolute; 
+        z-index: 3; 
+        font-size: 70px;
+        font-weight: bold;
+        font-family: Times;
+        color: #FF9999;
+
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+    }
+    .profile_icon{
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        position:absolute; 
+        z-index: 2; 
+        border-radius: 70%;
+        height:30%;
+    }
+
+</style>
+
+
+<img class="background" src="{%static 'images/photo1.jpg' %}">
+<div class="text">
+    <p>The world as i see it</p>
+</div>
+<img class="profile_icon" src="{%static 'images/icon.jpg' %}">
+
+
+
+
+{% endblock %}

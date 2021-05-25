@@ -27,4 +27,8 @@ urlpatterns = [
     path('photo3/', views.photo3, name="photo3"),
     path('photo4/', views.photo4, name="photo4"),
     path('photo5/', views.photo5, name="photo5"),
+    path('photo5/', views.visit, name="visit"),
+    path('<str:id>', views.detail, name="detail"),
+    path('new/', views.new, name="new"),
+    path('create/', views.create, name="create"),
 ]

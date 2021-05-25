@@ -2,7 +2,20 @@
 {% load static %}
 
 {% block content %}
+
+<div class="text">
+    <p>The world as i see it</p>
+</div>
+<img class="profile_icon" src="{%static 'images/icon.jpg' %}">
+<img class="background" src="{%static 'images/photo1.jpg' %}">
 <style>
+	.visit{
+		position:absolute;
+		z-index: 2;
+		
+            margin: 20px;
+            border-radius: 4px;
+	}
     .background{
         width:100%;
         /*background-image: url(./images/photo1.jpg);*/
@@ -11,7 +24,7 @@
     }
     .text{
         position:absolute; 
-        z-index: 3; 
+        z-index: 4; 
         font-size: 70px;
         font-weight: bold;
         font-family: Times;
@@ -27,21 +40,39 @@
         transform: translate(-50%, -50%);
 
         position:absolute; 
-        z-index: 2; 
+        z-index: 3; 
         border-radius: 70%;
         height:30%;
     }
 
 </style>
 
+<div class="visit">
+	
+	
+	<h1>visited</h1>
+	<div>
+		{% for blog in blogs %}
+		<div>
+			<pre>
+				
+			</pre>
+			name: {{blog.writer}}<br>
+			{{blog.summary}}
+			<a href="{%url 'detail' blog.id %}">....자세히</a>
+			<br>
+		</div>
+		{%endfor%}
+	</div>
+	<pre>
 
-<img class="background" src="{%static 'images/photo1.jpg' %}">
-<div class="text">
-    <p>The world as i see it</p>
+
+		
+	</pre>
+	<h2><a href="{%url 'new' %}">▶ writing</a> </h2>
+	
+	
 </div>
-<img class="profile_icon" src="{%static 'images/icon.jpg' %}">
-
-
 
 
 {% endblock %}

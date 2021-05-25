@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Blog
+from .models import Post
 # Register your models here.
 
-# admin.site.register(Blog)
+# admin.site.register(Post)
 
-@admin.register(Blog)
-class BlogAdmin(admin.ModelAdmin):
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
     list_display = (
         'id',
     )

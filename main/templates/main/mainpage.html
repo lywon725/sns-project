@@ -52,14 +52,14 @@
 	
 	<h1>visited</h1>
 	<div>
-		{% for blog in blogs %}
+		{% for post in post %}
 		<div>
 			<pre>
 				
 			</pre>
-			name: {{blog.writer}}<br>
-			{{blog.summary}}
-			<a href="{%url 'detail' blog.id %}">....자세히</a>
+			name: {{post.writer}}<br>
+			{{post.summary}}
+			<a href="{%url 'detail' post.id %}">....자세히</a>
 			<br>
 		</div>
 		{%endfor%}

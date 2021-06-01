@@ -42,10 +42,10 @@ def create(request):
     new_post.writer = request.POST['writer']
     new_post.pub_date = timezone.now()
     new_post.body = request.POST['body']
-    new_post.image = request.FILES['image']
+    new_post.image = request.FILES.get('image') # 여기 수정
     new_post.save()
-    return redirect('detail', new_post.id)
- 
+    return redirect('main:detail', new_post.id) # 여기 수정
+
 def edit(request, id):
     edit_post = Post.objects.get(id=id)
     return render(request, 'main/edit.html', {'post':edit_post})
@@ -62,4 +62,4 @@ def update(request, id):
 def delete(request, id):
     delete_post = Post.objects.get(id=id)
     delete_post.delete()
-    return redirect('main:posts')
+    return redirect('main:showmain')

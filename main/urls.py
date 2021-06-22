@@ -21,4 +21,5 @@ urlpatterns = [
     path('update/<str:id>', update, name="update"),
     path('delete/<str:id>', delete, name="delete"),
 
-]
+    
+] 

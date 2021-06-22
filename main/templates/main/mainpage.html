@@ -44,6 +44,8 @@
 </style>
 
 <div class="visit">
+  {% if user.is_authenticated %}
+
   <h1>visited</h1>
   <div>
     {% for post in post %}
@@ -56,8 +58,14 @@
     </div>
     {%endfor%}
   </div>
+
   <pre></pre>
   <h2><a href="{%url 'main:new' %}">▶ writing</a></h2>
+  {% else %}
+    <h3>로그인  후 이용 가능</h3>
+    <a href = "{% url 'account_login' %}" class="btn btn-warning">로그인</a>
+    <a href = "{% url 'account_signup' %}"class="btn btn-warning">회원가입</a>
+    {% endif %}
 </div>
 
 {% endblock %}

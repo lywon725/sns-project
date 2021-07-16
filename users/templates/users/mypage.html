@@ -1,13 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
+
+<html>
+<head>
+<style>
+    body{
+            background-color: #f0d785;
+        }
+</style>
+</head>
+
+<body>
+
 <div class="container">
-    <h1>{{user.username}}</h1>
+    <pre>  </pre>
+    <h1>😎
+    {% if 'user' in user.username and user.username != 'user' %}
+        {{ user.last_name }} {{ user.first_name }}
+    {% else %}
+        {{ user.username }}
+    {% endif %}
+    </h1>
+
+    {% if request.user != user %}<!--다른 사람의 프로필에 들어온 경우에만 팔로우/언팔로우 버튼이보임-->
+        {% if request.user.profile in user.profile.followers.all %}
+            <a href="{%url 'users:follow' user.id %}"><button type="button" class="btn btn-outline-info">언팔로우</button></a>
+        {% else %}
+        <a href="{%url 'users:follow' user.id %}"><button type="button" class="btn btn-info">팔로우</button></a>
+        {% endif %}
+    {% endif %}
+    </h1>
+    <pre>
+
+    </pre>
+    <div class="container">
+        <h4>❤ 팔로워: {{user.profile.followers.count}}명</h4>
+        {%for follower in user.profile.followers.all %}
+            <a href="{% url 'users:mypage' follower.user.id %}">▶{{follower.user.username}}</a>
+            <pre></pre> 
+        {% endfor %}
+        <pre></pre>
+        <h4>❤ 팔로잉: {{user.profile.followings.count}}명</h4>
+        {% for following in user.profile.followings.all %}
+            <a href="{%url 'users:mypage' following.user.id%}">▶{{following.user.username}}</a>
+            <pre></pre>
+        {% endfor %}
+    </div>
+    <pre>
+
+    </pre>
     <div>
+        <h3>✏내가 쓴 글</h3>
         {% for post in posts %}
             <a href="{%url 'main:detail' post.id%}">{{post.title}}</a><hr>
         {%endfor%}
     </div>
-</div>
+</div>  
+</body> 
+</html>
 {% endblock %}

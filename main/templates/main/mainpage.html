@@ -51,7 +51,16 @@
     {% for post in post %}
     <div>
       <pre></pre>
-      name: {{post.writer}}<br />
+      {% if post.writer %} 
+      {% if 'user' in post.writer.username and post.writer.username != 'users' %}
+      name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer.last_name }} {{ post.writer.first_name }}</a>
+      {% else %}
+      name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer }}</a>
+      {% endif %}
+      {% else %}
+      name: 알 수 없음
+      {% endif %}<br>
+
       {{post.summary}}
       <a href="{%url 'main:detail' post.id %}">....자세히</a>
       <br />

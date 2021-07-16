@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.forms import Form
 
 # Create your views here.
 
@@ -31,7 +32,8 @@ def visit(request):
 
 def detail(request, id):
     post = get_object_or_404(Post, pk = id)
-    return render(request, 'main/detail.html', {'post':post})
+    all_comments = post.comments.all().order_by('-created_at')
+    return render(request, 'main/detail.html', {'post':post, 'comments':all_comments})
 
 def new(request):
     return render(request, 'main/new.html')
@@ -63,3 +65,28 @@ def delete(request, id):
     delete_post = Post.objects.get(id=id)
     delete_post.delete()
     return redirect('main:showmain')
+
+def create_comment(request, post_id):
+	if request.method == "POST":
+		post = get_object_or_404(Post, pk=post_id)
+		current_user = request.user
+		comment_content = request.POST.get('content')
+		Comment.objects.create(content=comment_content, writer=current_user, post=post)
+	return redirect('main:detail', post_id)
+
+# #댓글 수정하기
+# def update_comment(request, com_id, post_id):
+#     my_com = Comment.objects.get(id=com_id)
+#     com_form = CommentForm(istance=my_com)
+#     if request.method == "POST":
+#         update_form = CommentForm(request.POST, instance = my_com)
+#         if update_form.is_vaild():
+#             update_form.save()
+#             return redirect('detail', post_id)
+#     return render(request, 'main/detail.html', {'com_form':com_form})
+
+# #댓글 삭제하기
+# def delete_comment(request, comment_id):
+#     delte_comment = Comment.objects.get(id=comment_id)
+#     delte_comment.delete()
+#     return redirect('main:detail')

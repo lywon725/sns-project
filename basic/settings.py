@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '$=kue5d6h0sn_0ox-hf=w=fx=gx13a4j9dhd87o9k4s6#ol@9-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'users',
+
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [

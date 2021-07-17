@@ -85,8 +85,19 @@ def create_comment(request, post_id):
 #             return redirect('detail', post_id)
 #     return render(request, 'main/detail.html', {'com_form':com_form})
 
-# #댓글 삭제하기
-# def delete_comment(request, comment_id):
-#     delte_comment = Comment.objects.get(id=comment_id)
-#     delte_comment.delete()
-#     return redirect('main:detail')
+def update_comment(request, comment_id):
+    comment=get_object_or_404(Comment, pk=comment_id)
+    if request.method == "POST":
+        community_id = comment.community.id
+        comment.content=request.POST.get('content')
+        comment.save()
+        return redirect('community:detail', community_id)
+    return render(request, 'community/update_comment.html',{"comment":comment})
+
+#댓글 삭제하기
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    #delete_comment = Comment.objects.get(id=comment_id)
+    post_id = comment.post.id
+    comment.delete()
+    return redirect('main:detail', post_id)

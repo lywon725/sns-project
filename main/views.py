@@ -88,11 +88,11 @@ def create_comment(request, post_id):
 def update_comment(request, comment_id):
     comment=get_object_or_404(Comment, pk=comment_id)
     if request.method == "POST":
-        community_id = comment.community.id
+        post_id = comment.post.id
         comment.content=request.POST.get('content')
         comment.save()
-        return redirect('community:detail', community_id)
-    return render(request, 'community/update_comment.html',{"comment":comment})
+        return redirect('main:detail',post_id)
+    return render(request, 'main/update_comment.html',{"comment":comment})
 
 #댓글 삭제하기
 def delete_comment(request, comment_id):

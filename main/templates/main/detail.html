@@ -1,18 +1,29 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<head>
+	<style>
+		body{
+				background-color: #b8b2ec;
+			}
+	</style>
+</head>
 
-<h1>{{post.title}}</h1>
-{% if post.writer %}
-  {% if 'user' in post.writer.username %}
-  작성자 : <a href="{% url 'users:mypage' post.writer.id %}"></a>{{ post.writer.last_name }} {{ post.writer.first_name }}
-  {% else %}
-  작성자 : <a href="{% url 'users:mypage' post.writer.id %}"></a>{{ post.writer }}
+<h1>{{post.title}} </h1>
+<div style=" text-indent: 15px;">
+  {% if post.writer %}
+    {% if 'user' in post.writer.username %}
+    작성자 : <a href="{% url 'users:mypage' post.writer.id %}"></a>{{ post.writer.last_name }} {{ post.writer.first_name }}
+    {% else %}
+    작성자 : <a href="{% url 'users:mypage' post.writer.id %}"></a>{{ post.writer }}
+    {% endif %}
+    {% else %}
+    작성자 : 알 수 없음
   {% endif %}
-  {% else %}
-  작성자 : 알 수 없음
-{% endif %}
-  
-날짜 : {{post.pub_date}}
-<hr />
+</div>
+ 
+<div style=" text-indent: 15px;">
+  날짜 : {{post.pub_date}}
+</div> 
+<hr/>
 
 {% if post.image %}
 <!-- 여기 수정 -->
@@ -21,11 +32,16 @@
 </p>
 {% endif %}
 
-<p>{{post.body}}</p>
+<p style=" text-indent: 30px;">{{post.body}}</p>
+<hr/>
 
-<a href="{%url 'main:edit' post.id %}">수정하기</a>
-<a href="{%url 'main:delete' post.id %}">삭제하기</a>
+<a href="{%url 'main:edit' post.id %}">✍게시물 수정</a><br>
+<a href="{%url 'main:delete' post.id %}">🗑게시물 삭제</a>
+<pre>
 
+
+</pre>
+<pre>🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍</pre>
 <div>
 	<form action="{%url 'main:create_comment' post.id%}" method="POST">
 		{%csrf_token%}
@@ -38,7 +54,10 @@
 
 
 </pre>
+
+<div>
 {% for comment in comments %}
+<pre>...................</pre>
     <div>
         <p>{% if post.writer %}
             {% if 'user' in post.writer.username %}
@@ -49,12 +68,18 @@
             {% else %}
             작성자 : 알 수 없음
             {% endif %}
-            </p><br>
-        {{comment.content}}
-        <a href="{% url 'main:delete_comment' comment.id %}">댓글 삭제하기</a>
-        <a href="{% url 'main:update_comment' comment.id %}">댓글 수정하기</a>
-    </div>
-    {%endfor%}
+        </p>
+        <div style=" text-indent: 15px;">
+          {{comment.content}}
+        </div>
 
+        <br><a href="{% url 'main:update_comment' comment.id %}">✍댓글 수정</a>
+        <br><a href="{% url 'main:delete_comment' comment.id %}">🗑댓글 삭제 </a>
+
+    </div>
+{%endfor%}
+</div>
 
 {% endblock %}
+
+

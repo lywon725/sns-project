@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block content %}
+
+<head>
+	<style>
+		body{
+				background-color: #b8b2ec;
+			}
+	</style>
+</head>
+
+
 <div class="container">
 	<h1>댓글 수정하기</h1>
 	<form action="{% url 'main:update_comment' comment.id %}" method="post">

@@ -12,6 +12,7 @@
 
     margin: 20px;
     border-radius: 4px;
+    float: right; 
   }
   .background {
     width: 100%;
@@ -47,29 +48,30 @@
   {% if user.is_authenticated %}
 
   <h1>visited</h1>
-  <div>
+  <div >
+    <h1>....................</h1>
     {% for post in post %}
     <div>
       <pre></pre>
       {% if post.writer %} 
       {% if 'user' in post.writer.username and post.writer.username != 'users' %}
-      name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer.last_name }} {{ post.writer.first_name }}</a>
+      🙂 name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer.last_name }} {{ post.writer.first_name }}</a>
       {% else %}
-      name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer }}</a>
+      🙂 name: <a href="{% url 'users:mypage' post.writer.id %}">{{ post.writer }}</a>
       {% endif %}
       {% else %}
-      name: 알 수 없음
+      🙂 name: 알 수 없음
       {% endif %}<br>
 
       {{post.summary}}
-      <a href="{%url 'main:detail' post.id %}">....자세히</a>
+      <a href="{%url 'main:detail' post.id %}">▷ click</a>
       <br />
     </div>
     {%endfor%}
   </div>
 
-  <pre></pre>
-  <h2><a href="{%url 'main:new' %}">▶ writing</a></h2>
+  <h1>....................</h1>
+  <h4><a href="{%url 'main:new' %}">♡ to write</a></h4>
   {% else %}
     <h3>로그인  후 이용 가능</h3>
     <a href = "{% url 'account_login' %}" class="btn btn-warning">로그인</a>

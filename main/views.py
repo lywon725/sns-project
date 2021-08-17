@@ -1,10 +1,18 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Dislike, Like, Post, Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.forms import Form
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+# 2. 사용할 모듈 불러오기
+# 2-1 POST 형식의 HTTP 통신만 받기
+from django.views.decorators.http import require_POST
+# 2-2 response를 변환하는 가장 가본 함수, html 파일, 이미지 등 다양한 응답
+from django.http import HttpResponse
+# 2-3 딕셔너리를 json 형식으로 바꾸기 위해
+import json
 
 def showmain(request):
     post = Post.objects.all()
@@ -101,3 +109,41 @@ def delete_comment(request, comment_id):
     post_id = comment.post.id
     comment.delete()
     return redirect('main:detail', post_id)
+
+# 3. like_toggle 함수 작성하기
+
+@login_required
+@require_POST
+
+def like_toggle(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post_like, post_like_created = Like.objects.get_or_create(user=request.user, post=post)
+
+    if not post_like_created:
+        post_like.delete()
+        result = "like_cancel"
+    else:
+        result = "like"
+    
+    context = {
+        "like_count":post.like_count,
+        "result":result
+    }
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def dislike_toggle(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post_dislike, post_dislike_created = Dislike.objects.get_or_create(user=request.user, post=post)
+
+    if not post_dislike_created:
+        post_dislike.delete()
+        result = "dislike_cancel"
+    else:
+        result = "dislike"
+    
+    context = {
+        "dislike_count":post.dislike_count,
+        "result":result
+    }
+    return HttpResponse(json.dumps(context), content_type="application/json")
